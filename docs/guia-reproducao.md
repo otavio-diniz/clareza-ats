@@ -30,7 +30,7 @@ Para experimentar **sem instalação**, use a [aplicação pública](https://cla
 2. Clique em **Analisar aderência**. O cenário de referência deve exibir **50% de cobertura textual (4/8 requisitos)**: **3/5 obrigatórios** e **1/3 desejáveis**.
 3. Na matriz, confira *Excel avançado* classificado para revisão e *Power BI* sem evidência. Não confunda ausência no texto com ausência de habilidade pessoal.
 4. Confira as palavras-chave e o currículo reorganizado. Ele não deve inventar proficiência, cargo ou experiência.
-5. Edite a saída, selecione **Exportar PDF** e, no diálogo do navegador, **Salvar como PDF**. Revise visualmente o PDF resultante antes de compartilhar. Também há cópia e exportação de TXT.
+5. Edite a saída, selecione **Exportar PDF** e, no diálogo do navegador, **Salvar como PDF**. Se a demonstração Lovable mostrar o selo flutuante “Edit with Lovable”, **dispense-o pelo X antes de imprimir**. O código versionado no GitHub também contém uma regra CSS que oculta o selo apenas no modo de impressão. Revise visualmente o PDF resultante antes de compartilhar. Também há cópia e exportação de TXT.
 6. Teste entradas vazias e insuficientes, reanálise, limpeza e navegação por teclado. Use apenas textos sintéticos.
 
 O percentual é um **indicador heurístico de presença de evidências textuais**, não uma nota da plataforma ATS de recrutadores.
@@ -80,6 +80,8 @@ A versão de referência para código reproduzível é **o GitHub**, não a pág
 | Build falha após edição | Reproduza a partir de clone limpo e compare os manifestos npm; não misture gerenciadores de pacotes |
 
 **Limitação de cobertura:** os 15 testes automatizados avaliam regras de negócio e rota, não leitores de tela, navegadores/dispositivos físicos, nem a renderização de cada página de PDF. O app de demonstração usa um exemplo sintético; não foi treinado nem calibrado contra ATS proprietários.
+
+**Saída de referência:** [currículo totalmente fictício em PDF A4, inspecionado visualmente](../assets/examples/curriculo-exemplo-ficticio.pdf). A impressão da demonstração hospedada foi testada com o selo do editor dispensado, para evitar o conteúdo da plataforma na folha. Ações de impressão podem variar entre navegadores.
 
 ## Privacidade e segurança
 
