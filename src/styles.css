@@ -146,6 +146,8 @@
 #print-area { display: none; }
 
 @media print {
+  /* The host's editor badge belongs to the web UI, never to an exported CV. */
+  #lovable-badge { display: none !important; }
   @page { size: A4; margin: 18mm 16mm; }
   body { background: #fff !important; color: #000 !important; }
   .no-print { display: none !important; }
