@@ -72,7 +72,12 @@ export const CONCEPTS: Concept[] = [
   { id: "typescript", label: "TypeScript", job: /typescript/, cv: /typescript/ },
   { id: "javascript", label: "JavaScript", job: /javascript/, cv: /javascript/ },
   { id: "atendimento", label: "Atendimento ao cliente", job: /atendimento/, cv: /atendimento/ },
-  { id: "projetos", label: "Gestão de projetos", job: /gestao de projetos|gerenciamento de projetos/, cv: /(gestao|gerenciamento|gerenciei|conduzi)[^.\n]{0,20}projetos?/ },
+  {
+    id: "projetos",
+    label: "Gestão de projetos",
+    job: /gestao de projetos|gerenciamento de projetos/,
+    cv: /(gestao|gerenciamento|gerenciei|conduzi)[^.\n]{0,20}projetos?/,
+  },
 ];
 
 export function detectConcepts(normalizedLine: string): Concept[] {

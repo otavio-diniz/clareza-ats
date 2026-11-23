@@ -41,14 +41,29 @@ export interface AnalysisResult {
 }
 
 const HEADERS: { re: RegExp; cat: Category }[] = [
-  { re: /^(requisitos? )?(obrigatorios?|essenciais?|indispensaveis?|imprescindiveis?)\b|^requisitos?:?$|^o que (buscamos|esperamos)|^qualificacoes:?$/, cat: "obrigatorio" },
-  { re: /^(requisitos? )?(desejaveis?|diferenciais?)|^sera um diferencial|^(e )?um plus|^nice to have/, cat: "desejavel" },
-  { re: /^(responsabilidades|atribuicoes|atividades|principais atividades|o que voce vai fazer)/, cat: "responsabilidade" },
-  { re: /^(beneficios|sobre a empresa|sobre nos|local|salario|remuneracao|regime|como se candidatar)/, cat: "nao-classificado" },
+  {
+    re: /^(requisitos? )?(obrigatorios?|essenciais?|indispensaveis?|imprescindiveis?)\b|^requisitos?:?$|^o que (buscamos|esperamos)|^qualificacoes:?$/,
+    cat: "obrigatorio",
+  },
+  {
+    re: /^(requisitos? )?(desejaveis?|diferenciais?)|^sera um diferencial|^(e )?um plus|^nice to have/,
+    cat: "desejavel",
+  },
+  {
+    re: /^(responsabilidades|atribuicoes|atividades|principais atividades|o que voce vai fazer)/,
+    cat: "responsabilidade",
+  },
+  {
+    re: /^(beneficios|sobre a empresa|sobre nos|local|salario|remuneracao|regime|como se candidatar)/,
+    cat: "nao-classificado",
+  },
 ];
 
 function headerCategory(line: string): Category | "ignorar" | null {
-  const n = normalize(line).replace(/[:\-–#*]+\s*$/g, "").replace(/^[#*\s]+/, "").trim();
+  const n = normalize(line)
+    .replace(/[:\-–#*]+\s*$/g, "")
+    .replace(/^[#*\s]+/, "")
+    .trim();
   if (n.length > 60) return null;
   for (const h of HEADERS) {
     if (h.re.test(n)) {
@@ -61,8 +76,14 @@ function headerCategory(line: string): Category | "ignorar" | null {
 
 const BULLET = /^\s*([-•*–·]|\d+[.)])\s+/;
 
-export function extractRequirements(job: string): { requirements: Requirement[]; structured: boolean } {
-  const lines = job.split(/\n/).map((l) => l.trim()).filter(Boolean);
+export function extractRequirements(job: string): {
+  requirements: Requirement[];
+  structured: boolean;
+} {
+  const lines = job
+    .split(/\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
   const reqs: Requirement[] = [];
   let current: Category | "ignorar" | null = null;
   let structured = false;
@@ -106,7 +127,8 @@ function findSnippet(snippets: string[], re: RegExp): string | null {
 
 function evaluateConcept(c: Concept, snippets: string[]): Omit<MatrixRow, "requirement"> {
   const ev = findSnippet(snippets, c.cv);
-  if (ev) return { status: "evidencia", evidence: ev, note: `Trecho do currículo menciona ${c.label}.` };
+  if (ev)
+    return { status: "evidencia", evidence: ev, note: `Trecho do currículo menciona ${c.label}.` };
   if (c.partial) {
     const p = findSnippet(snippets, c.partial.cv);
     if (p) return { status: "revisao", evidence: p, note: c.partial.note };
@@ -115,13 +137,21 @@ function evaluateConcept(c: Concept, snippets: string[]): Omit<MatrixRow, "requi
     const t = findSnippet(snippets, c.transfer.cv);
     if (t) return { status: "transferivel", evidence: t, note: c.transfer.note };
   }
-  return { status: "nao-identificado", evidence: null, note: `${c.label} não consta no texto do currículo.` };
+  return {
+    status: "nao-identificado",
+    evidence: null,
+    note: `${c.label} não consta no texto do currículo.`,
+  };
 }
 
 function evaluateByTokens(text: string, snippets: string[]): Omit<MatrixRow, "requirement"> {
   const tokens = [...new Set(tokenize(text))];
   if (tokens.length === 0)
-    return { status: "revisao", evidence: null, note: "Requisito genérico demais para comparar com segurança." };
+    return {
+      status: "revisao",
+      evidence: null,
+      note: "Requisito genérico demais para comparar com segurança.",
+    };
   let best: { s: string; ratio: number } | null = null;
   for (const s of snippets) {
     const st = new Set(tokenize(s));
@@ -129,18 +159,41 @@ function evaluateByTokens(text: string, snippets: string[]): Omit<MatrixRow, "re
     if (!best || hit > best.ratio) best = { s, ratio: hit };
   }
   if (best && best.ratio === 1 && tokens.length >= 2)
-    return { status: "evidencia", evidence: best.s, note: "Todos os termos relevantes aparecem no mesmo trecho do currículo." };
+    return {
+      status: "evidencia",
+      evidence: best.s,
+      note: "Todos os termos relevantes aparecem no mesmo trecho do currículo.",
+    };
   if (best && best.ratio >= 0.5)
-    return { status: "revisao", evidence: best.s, note: "Parte dos termos aparece no currículo; confirme se o trecho realmente sustenta o requisito." };
-  return { status: "nao-identificado", evidence: null, note: "Não consta no texto do currículo (comparação por termos)." };
+    return {
+      status: "revisao",
+      evidence: best.s,
+      note: "Parte dos termos aparece no currículo; confirme se o trecho realmente sustenta o requisito.",
+    };
+  return {
+    status: "nao-identificado",
+    evidence: null,
+    note: "Não consta no texto do currículo (comparação por termos).",
+  };
 }
 
-const RANK: Record<Status, number> = { "nao-identificado": 0, transferivel: 1, revisao: 2, evidencia: 3 };
+const RANK: Record<Status, number> = {
+  "nao-identificado": 0,
+  transferivel: 1,
+  revisao: 2,
+  evidencia: 3,
+};
 
 export function evaluateRequirement(req: Requirement, cv: string): MatrixRow {
   const snippets = splitSnippets(cv);
-  if (req.concepts.length === 0) return { requirement: req, ...evaluateByTokens(req.text, snippets) };
-  const parts = req.concepts.map((id) => evaluateConcept(CONCEPTS.find((c) => c.id === id)!, snippets));
+  if (req.concepts.length === 0)
+    return { requirement: req, ...evaluateByTokens(req.text, snippets) };
+  const parts = req.concepts.map((id) =>
+    evaluateConcept(
+      CONCEPTS.find((c) => c.id === id)!,
+      snippets,
+    ),
+  );
   const worst = parts.reduce((a, b) => (RANK[b.status] < RANK[a.status] ? b : a));
   const anyEvidence = parts.some((p) => p.status === "evidencia");
   if (parts.length > 1 && worst.status !== "evidencia" && anyEvidence) {
@@ -180,7 +233,9 @@ export function analyze(job: string, cv: string): AnalysisResult {
       desejavel: group(counted.filter((r) => r.requirement.category === "desejavel")),
       percent: reliable ? Math.round((all.evidenced / all.total) * 100) : null,
     },
-    missingMandatory: counted.filter((r) => r.requirement.category === "obrigatorio" && r.status !== "evidencia"),
+    missingMandatory: counted.filter(
+      (r) => r.requirement.category === "obrigatorio" && r.status !== "evidencia",
+    ),
     keywordsFound,
     keywordsToCheck,
     structured,
@@ -197,9 +252,23 @@ export function validateInputs(job: string, cv: string): ValidationError[] {
   const j = job.trim();
   const c = cv.trim();
   if (!j) errs.push({ field: "job", message: "Cole a descrição da vaga para iniciar a análise." });
-  else if (j.length < 80) errs.push({ field: "job", message: `A descrição da vaga está curta demais (${j.length} caracteres). Cole pelo menos 80, incluindo os requisitos.` });
-  if (!c) errs.push({ field: "cv", message: "Cole o texto do seu currículo para iniciar a análise." });
-  else if (c.length < 150) errs.push({ field: "cv", message: `O currículo está curto demais (${c.length} caracteres). Cole pelo menos 150, com experiências e formação.` });
-  else if (c.split(/\n/).filter((l) => l.trim()).length < 3) errs.push({ field: "cv", message: "O currículo parece incompleto: cole o texto com quebras de linha (nome, experiências, formação)." });
+  else if (j.length < 80)
+    errs.push({
+      field: "job",
+      message: `A descrição da vaga está curta demais (${j.length} caracteres). Cole pelo menos 80, incluindo os requisitos.`,
+    });
+  if (!c)
+    errs.push({ field: "cv", message: "Cole o texto do seu currículo para iniciar a análise." });
+  else if (c.length < 150)
+    errs.push({
+      field: "cv",
+      message: `O currículo está curto demais (${c.length} caracteres). Cole pelo menos 150, com experiências e formação.`,
+    });
+  else if (c.split(/\n/).filter((l) => l.trim()).length < 3)
+    errs.push({
+      field: "cv",
+      message:
+        "O currículo parece incompleto: cole o texto com quebras de linha (nome, experiências, formação).",
+    });
   return errs;
 }

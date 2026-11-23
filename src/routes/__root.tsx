@@ -82,7 +82,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Clareza ATS" },
-      { name: "description", content: "Compare currículo e vaga no navegador, sem inventar experiências." },
+      {
+        name: "description",
+        content: "Compare currículo e vaga no navegador, sem inventar experiências.",
+      },
       { property: "og:title", content: "Clareza ATS" },
       { property: "og:description", content: "Currículo fiel. Match explicável." },
       { property: "og:type", content: "website" },

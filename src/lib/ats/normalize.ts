@@ -1,6 +1,9 @@
 /** Remove acentos e caixa, preservando o comprimento aproximado do texto. */
 export function normalize(text: string): string {
-  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
 }
 
 export const STOPWORDS = new Set(

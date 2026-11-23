@@ -19,8 +19,12 @@ export function InputPanel({ id, label, hint, value, onChange, error, min }: Pro
         <Label htmlFor={id} className="font-serif text-lg font-semibold text-primary">
           {label}
         </Label>
-        <span id={`${id}-count`} className={len > 0 && len < min ? "text-xs text-review" : "text-xs text-muted-foreground"}>
-          {value.length.toLocaleString("pt-BR")} caracteres{len > 0 && len < min ? ` · mínimo ${min}` : ""}
+        <span
+          id={`${id}-count`}
+          className={len > 0 && len < min ? "text-xs text-review" : "text-xs text-muted-foreground"}
+        >
+          {value.length.toLocaleString("pt-BR")} caracteres
+          {len > 0 && len < min ? ` · mínimo ${min}` : ""}
         </span>
       </div>
       <p className="text-sm text-muted-foreground">{hint}</p>

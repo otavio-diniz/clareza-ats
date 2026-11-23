@@ -58,7 +58,9 @@ describe("currículo ajustado não inventa", () => {
     expect(normalize(text)).not.toMatch(/ingles|ageis|gerente/);
   });
   it("preserva todas as linhas do original", () => {
-    for (const l of SAMPLE_CV.split("\n").map((x) => x.replace(/^- /, "").trim()).filter(Boolean)) {
+    for (const l of SAMPLE_CV.split("\n")
+      .map((x) => x.replace(/^- /, "").trim())
+      .filter(Boolean)) {
       if (/^(Resumo|Experiência|Formação|Habilidades)$/.test(l)) continue;
       expect(text).toContain(l);
     }
@@ -76,7 +78,9 @@ describe("validação", () => {
     expect(validateInputs("curta", "x".repeat(10))[0]!.message).toMatch(/curta/);
   });
   it("não calcula porcentagem sem requisitos confiáveis", () => {
-    expect(analyze("Texto livre sem requisitos claros sobre a empresa.", SAMPLE_CV).coverage.percent).toBeNull();
+    expect(
+      analyze("Texto livre sem requisitos claros sobre a empresa.", SAMPLE_CV).coverage.percent,
+    ).toBeNull();
   });
 });
 
@@ -99,7 +103,9 @@ describe("PDF e privacidade", () => {
     walk("src/components/ats");
     files.push("src/routes/index.tsx");
     for (const f of files) {
-      expect(readFileSync(f, "utf8")).not.toMatch(/fetch\(|localStorage|sessionStorage|XMLHttpRequest|document\.cookie|sendBeacon/);
+      expect(readFileSync(f, "utf8")).not.toMatch(
+        /fetch\(|localStorage|sessionStorage|XMLHttpRequest|document\.cookie|sendBeacon/,
+      );
     }
   });
 });

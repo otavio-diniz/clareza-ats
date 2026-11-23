@@ -3,11 +3,31 @@ import { CONCEPTS } from "./concepts";
 import { normalize } from "./normalize";
 
 const SECTION_DEFS: { key: string; title: string; re: RegExp }[] = [
-  { key: "resumo", title: "RESUMO PROFISSIONAL", re: /^(resumo( profissional)?|perfil( profissional)?|sobre( mim)?|objetivo)$/ },
-  { key: "experiencia", title: "EXPERIÊNCIA PROFISSIONAL", re: /^(experiencias?( profissionais?| profissional)?|historico profissional|atuacao profissional)$/ },
-  { key: "formacao", title: "FORMAÇÃO ACADÊMICA", re: /^(formacao( academica)?|educacao|escolaridade)$/ },
-  { key: "habilidades", title: "HABILIDADES", re: /^(habilidades|competencias|competencias tecnicas|conhecimentos|skills|ferramentas)$/ },
-  { key: "cursos", title: "CURSOS E CERTIFICAÇÕES", re: /^(cursos|certificacoes|cursos e certificacoes|cursos complementares)$/ },
+  {
+    key: "resumo",
+    title: "RESUMO PROFISSIONAL",
+    re: /^(resumo( profissional)?|perfil( profissional)?|sobre( mim)?|objetivo)$/,
+  },
+  {
+    key: "experiencia",
+    title: "EXPERIÊNCIA PROFISSIONAL",
+    re: /^(experiencias?( profissionais?| profissional)?|historico profissional|atuacao profissional)$/,
+  },
+  {
+    key: "formacao",
+    title: "FORMAÇÃO ACADÊMICA",
+    re: /^(formacao( academica)?|educacao|escolaridade)$/,
+  },
+  {
+    key: "habilidades",
+    title: "HABILIDADES",
+    re: /^(habilidades|competencias|competencias tecnicas|conhecimentos|skills|ferramentas)$/,
+  },
+  {
+    key: "cursos",
+    title: "CURSOS E CERTIFICAÇÕES",
+    re: /^(cursos|certificacoes|cursos e certificacoes|cursos complementares)$/,
+  },
   { key: "idiomas", title: "IDIOMAS", re: /^(idiomas|linguas)$/ },
 ];
 const ORDER = ["resumo", "experiencia", "habilidades", "formacao", "cursos", "idiomas"];
@@ -35,7 +55,13 @@ export function parseResume(cv: string): { identity: string[]; sections: ParsedS
       }
       continue;
     }
-    if (!cur && n.length <= 40 && line === line.toUpperCase() && /[A-ZÀ-Ú]{4}/.test(line) && identity.length > 0) {
+    if (
+      !cur &&
+      n.length <= 40 &&
+      line === line.toUpperCase() &&
+      /[A-ZÀ-Ú]{4}/.test(line) &&
+      identity.length > 0
+    ) {
       cur = { key: `outro-${sections.length}`, title: line.replace(/:$/, ""), lines: [] };
       sections.push(cur);
       continue;
@@ -52,10 +78,21 @@ const BULLET = /^\s*([-•*–·])\s+/;
  * vem literalmente do currículo; o único texto novo são cabeçalhos e a lista de termos
  * que já aparecem no próprio currículo.
  */
-export function buildAtsResume(cv: string, result: AnalysisResult | null): { text: string; restructured: boolean } {
+export function buildAtsResume(
+  cv: string,
+  result: AnalysisResult | null,
+): { text: string; restructured: boolean } {
   const { identity, sections } = parseResume(cv);
   if (sections.length === 0) {
-    return { text: cv.trim().split(/\n/).map((l) => l.trim()).filter(Boolean).join("\n"), restructured: false };
+    return {
+      text: cv
+        .trim()
+        .split(/\n/)
+        .map((l) => l.trim())
+        .filter(Boolean)
+        .join("\n"),
+      restructured: false,
+    };
   }
   const out: string[] = [...identity, ""];
   const sorted = [...sections].sort((a, b) => {
