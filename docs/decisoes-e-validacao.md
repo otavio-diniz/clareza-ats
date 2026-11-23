@@ -41,3 +41,12 @@ A seção será atualizada com data, versão e saídas efetivas após execução
 **Diferença entre versões:** a publicação Lovable deriva do commit próprio `dbcbc0337d6c8c00ad133dc3184c79668b48068f`; o código corrigido do GitHub deriva da importação textual e de commits de formatação, lockfile e dependências. O build/npm audit de código GitHub não são prova de que o ambiente Lovable adotou automaticamente essas correções. Não declarar snapshots equivalentes até reconciliação.
 
 **Limitações remanescentes:** validação visual de edição, responsividade, navegação via teclado e impressão PDF; verificação independente das dependências da hospedagem; eventuais alertas do agente e sincronização Lovable ↔ GitHub. Nenhuma candidatura, comunicação externa com recrutadores ou inscrição na plataforma DIO foi executada.
+
+
+## Evidência visual e funcional em navegador público — 23/11/2026
+Um navegador Chromium headless acessou diretamente `https://clareza-ats-otavio-diniz.lovable.app/` e confirmou título e presença do formulário em HTML renderizado. Foi acionado o botão **Carregar exemplo fictício**: os dois campos receberam conteúdo, com 393 caracteres de vaga e 808 de currículo. Em seguida, o botão **Analisar aderência** foi acionado. O resultado surgiu na página e a captura autêntica `assets/screenshots/analise-exemplo-ficticio-20261123.png` apresenta **50%**, **3/5 obrigatórios**, **1/3 desejáveis**, Excel avançado em revisão e Power BI não identificado. O documento reorganizado não contém alegação nova de domínio de Power BI nem de Excel avançado. A ação **Exportar PDF** estava habilitada.
+
+A renderização de impressão Chromium via protocolo do navegador produziu PDF fictício com **76.096 bytes**. O arquivo foi gerado, mas **não houve verificação visual completa de suas páginas**; não chamar esse teste de homologação do layout PDF. Testes de acessibilidade assistiva e responsividade móvel não foram concluídos nesta rodada.
+
+## Revisão preliminar de conteúdo público
+O repositório foi montado com dados fictícios; nenhum currículo real, base Radar, contato de candidato ou credencial foi enviado como dado do produto. Foi executada busca textual no código versionado por padrões comuns de token GitHub/OpenAI, chave privada e caminho de usuário local, **sem correspondências**. Esse scanner tem escopo limitado: ausência de correspondência não demonstra ausência absoluta de segredo ou vulnerabilidade. A captura de demonstração deriva de execução real do Chromium e apresenta exclusivamente material sintético.
