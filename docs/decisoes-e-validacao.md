@@ -28,6 +28,7 @@ A revisão técnica do **código exportado** introduziu ajustes no repositório:
 2. **Gerenciamento de dependências reproduzível:** manutenção de `package-lock.json` como lockfile npm canônico e retirada de `bun.lock` da versão de reprodução, evitando duas árvores de dependências com resoluções divergentes.
 3. **Tratamento de advisories:** atualização de Vite de 8.1.5 para 8.3.8 e remoção da dependência direta Zod 3.x, que não era importada pelos módulos `src` deste aplicativo. Auditoria npm posterior reportou zero vulnerabilidades conhecidas na resolução analisada.
 4. **Documentação profissional e prova de uso:** README ordenado pelo valor ao visitante, guia de reprodução, atribuições, direitos e captura autêntica da análise fictícia no navegador público.
+5. **Saída visual e metadados:** ícone do aplicativo corrigido para o SVG realmente versionado, retirada de metadado social genérico do template e regra CSS que impede a impressão do selo do editor na revisão GitHub, mantendo-o visível na interface normal.
 
 Essas mudanças **não foram implementadas automaticamente no ambiente hospedado pelo Lovable**. A aplicação publicada e o código do GitHub não são declarados idênticos em bytes, dependências ou artefato final; a auditoria npm da revisão GitHub não pode ser aplicada como prova de segurança do snapshot do provedor.
 
@@ -53,7 +54,8 @@ A [rotina reprodutível, com comandos, saídas esperadas e troubleshooting](guia
 | Compilação Vite/Nitro | `npm run build`, exit 0 | Build de produção do repositório |
 | npm audit | **0 vulnerabilidades reportadas** após correção | Dependências resolvidas com npm naquela data |
 | Navegador público | Página inicial acessível; botão exemplo e análise funcionais | Exemplo fictício, matriz, indicador, CV editável |
-| Impressão no Chromium | PDF gerado por `Page.printToPDF` com 76.096 bytes | Geração do arquivo, não inspeção integral de todas as páginas |
+| Viewport móvel no Chromium | **390 × 844 px**, interface funcional, sem transbordamento horizontal | Emulação responsiva, não teste em aparelho físico |
+| Impressão no Chromium | **PDF A4 de 1 página, 51.227 bytes**, extração e renderização visual inspecionadas | Currículo totalmente fictício; selo do editor dispensado antes de gerar |
 
 A captura de tela **autêntica**, obtida do aplicativo publicado com dados sintéticos, está em [assets/screenshots/analise-exemplo-ficticio-20261123.png](../assets/screenshots/analise-exemplo-ficticio-20261123.png).
 
@@ -63,7 +65,7 @@ Uma verificação textual preliminar no código versionado não encontrou padrõ
 
 O aplicativo não cria perfil, não armazena o currículo em banco próprio e realiza a comparação em memória da página. Uma demonstração pública deve usar **somente currículos e vagas fictícios**. Redes de distribuição e fontes carregadas pelo navegador podem produzir metadados técnicos normais.
 
-A revisão com tecnologias assistivas, múltiplos dispositivos físicos e uma inspeção visual abrangente de cada página de PDF são **limitações conhecidas do escopo de validação**, e não resultados aprovados por inferência.
+A revisão com leitores de tela, múltiplos dispositivos físicos e a paginação de currículos longos são **limitações conhecidas do escopo de validação**. O PDF de referência, com uma página, foi conferido visualmente. No site Lovable, o selo editável da plataforma é um elemento externo ao currículo: o botão **X** do próprio selo foi acionado antes de imprimir, gerando o PDF limpo. O código GitHub inclui adicionalmente uma regra CSS exclusiva do modo impressão; essa alteração de código não deve ser confundida com atualização automática da versão hospedada.
 
 ## Aprendizados
 
