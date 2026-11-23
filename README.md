@@ -22,6 +22,12 @@ A aplicação foi criada no [Lovable](https://lovable.dev/projects/f98d5cdd-e324
 
 **Distinção de versões:** a aplicação hospedada no Lovable usa a revisão do próprio Lovable (anterior aos ajustes locais de dependência e formatação); o repositório contém a revisão corrigida e validada de forma independente. As duas versões não foram reconciliadas como binariamente idênticas. A impressão PDF e o uso mobile ainda dependem de ensaio visual específico. O relato técnico completo consta em [Decisões e validação](docs/decisoes-e-validacao.md).
 
+## Captura real do aplicativo publicado
+
+![Análise de currículo e vaga fictícios realizada na aplicação publicada, com cobertura de 50% e matriz de evidências](assets/screenshots/analise-exemplo-ficticio-20261123.png)
+
+O ensaio com navegador Chromium em 23/11/2026 confirmou **carregar exemplo fictício**, **preencher os dois campos**, **analisar**, **exibir cobertura de 50% (4/8, sendo 3/5 obrigatórios e 1/3 desejáveis)**, **matriz de evidências**, **lacunas explícitas de Excel avançado e Power BI**, **currículo editável** e **ação de exportação habilitada**. A renderização para PDF via navegador gerou arquivo de **76.096 bytes**, mas não houve revisão visual independente de todas as páginas do PDF. A captura acima é real, não foi gerada por IA.
+
 ## Como executar
 Requisitos: Node.js e npm compatíveis com o projeto.
 
