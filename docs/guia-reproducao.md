@@ -79,7 +79,7 @@ A versão de referência para código reproduzível é **o GitHub**, não a pág
 | Erros de estilo por finais de linha | Confira `.gitattributes`, `git check-attr eol -- src/routes/index.tsx` e configurações do Git; a política pretendida é LF |
 | Build falha após edição | Reproduza a partir de clone limpo e compare os manifestos npm; não misture gerenciadores de pacotes |
 
-**Limitação de cobertura:** os 15 testes automatizados avaliam regras de negócio e rota, não leitores de tela, navegadores/dispositivos físicos, nem a renderização de cada página de PDF. O app de demonstração usa um exemplo sintético; não foi treinado nem calibrado contra ATS proprietários.
+**Escopo de validação:** os 15 testes automatizados avaliam regras de negócio e rota. Em **23/11/2026**, foram realizados testes adicionais no navegador Chromium com viewport móvel emulado **390 × 844 px**, sem transbordamento horizontal, e a geração de um **PDF A4 de uma página**, cuja extração textual e renderização visual foram inspecionadas. Não houve ensaio com leitor de tela nem dispositivo físico; currículos longos de múltiplas páginas não foram homologados. O aplicativo utiliza dados sintéticos e não foi calibrado contra ATS proprietários.
 
 **Saída de referência:** [currículo totalmente fictício em PDF A4, inspecionado visualmente](../assets/examples/curriculo-exemplo-ficticio.pdf). A impressão da demonstração hospedada foi testada com o selo do editor dispensado, para evitar o conteúdo da plataforma na folha. Ações de impressão podem variar entre navegadores.
 
