@@ -1,0 +1,28 @@
+CLAREZA ATS — LICENÇA PROPRIETÁRIA PARA DEMONSTRAÇÃO E AVALIAÇÃO ACADÊMICA
+
+Copyright © 2026 Otávio Diniz. Todos os direitos reservados sobre os elementos autorais específicos do projeto, nos limites dos direitos efetivamente detidos pelo titular.
+
+1. Escopo
+Esta licença alcança apenas o código, textos, identidade e demais elementos originais específicos do Clareza ATS sobre os quais o titular possua direitos. Não reivindica titularidade sobre componentes genéricos, bibliotecas, frameworks, serviços, marcas, recursos licenciados por terceiros ou conteúdos institucionais.
+
+2. Disponibilidade não significa licença de código aberto
+A publicação no GitHub permite inspeção para fins de portfólio e aprendizagem. Ela não coloca os materiais em domínio público nem concede uma licença open source de reutilização geral. As funcionalidades regulares do GitHub permanecem regidas pelos termos da plataforma.
+
+3. Permissão limitada de avaliação
+Docentes, avaliadores, estudantes, recrutadores e revisores podem visualizar, baixar, clonar e executar os materiais próprios na extensão razoavelmente necessária para examinar a solução e reproduzir sua demonstração educacional. Todos os testes e demonstrações devem usar exclusivamente dados fictícios e preservar os avisos de autoria e limitações.
+
+A permissão não abrange redistribuição pública independente, exploração comercial, sublicenciamento, incorporação em outros produtos, republicação como obra própria ou distribuição de derivados. Outros usos exigem autorização prévia e escrita do titular dos direitos pertinentes.
+
+4. Dependências e direitos de terceiros
+React, TanStack, Tailwind, shadcn/ui, bibliotecas e demais dependências mantêm suas licenças originais. Ícones, fontes, marcas e componentes de plataforma permanecem sujeitos aos direitos de seus titulares. O uso de IA e Lovable no desenvolvimento não cria direitos autorais sobre recursos alheios. Consulte NOTICE.md.
+
+5. Marcas e formação
+Santander, Santander Open Academy, DIO, Lovable, GitHub e outras marcas citadas pertencem aos respectivos titulares. Menção educacional ou tecnológica não implica parceria, aprovação, certificação ou endosso deste produto.
+
+6. Isenção de garantias
+Os materiais são oferecidos “NO ESTADO EM QUE SE ENCONTRAM”, sem garantia de adequação a uso profissional, comercial, de contratação, de aprovação em ATS ou de proteção integral de informações. O aplicativo é uma demonstração heurística: antes de utilizá-lo com dados reais, avalie privacidade, dependências, ambiente de hospedagem e riscos de uso.
+
+7. Autorizações adicionais
+Qualquer utilização fora da permissão limitada de avaliação depende de autorização escrita do titular dos direitos pertinentes.
+
+Os direitos de terceiros e licenças das dependências não são alterados por este documento.
