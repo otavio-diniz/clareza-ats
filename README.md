@@ -42,13 +42,23 @@ Não há login, histórico de candidatos, backend de armazenamento de currículo
 No exemplo, a aplicação exibe **4 de 8 requisitos com evidência textual (50%)**, sendo **3/5 obrigatórios** e **1/3 desejáveis**. *Excel avançado* e *Power BI* permanecem destacados para revisão/ausência, sem serem artificialmente inseridos no currículo.
 
 <details>
-<summary><strong>Ver captura autêntica da análise publicada (dados sintéticos)</strong></summary>
+<summary><strong>Ver capturas reais do aplicativo publicado (somente dados fictícios)</strong></summary>
+
+**Página inicial**
+
+![Página inicial pública do Clareza ATS](assets/screenshots/pagina-inicial-20261123.png)
+
+**Análise completa em desktop**
 
 ![Clareza ATS: vaga e currículo fictícios, resultado de 50%, matriz de evidências e currículo reorganizado](assets/screenshots/analise-exemplo-ficticio-20261123.png)
 
+**Análise em viewport móvel de 390 × 844 px**
+
+![Versão móvel com formulário, 50% de cobertura e currículo reorganizado](assets/screenshots/analise-mobile-20261123.png)
+
 </details>
 
-A [captura](assets/screenshots/analise-exemplo-ficticio-20261123.png) reproduz o aplicativo real, não uma imagem conceitual. A demonstração é independente de candidaturas ou dados de terceiros.
+As capturas representam execuções **reais em navegador** com dados sintéticos, não imagens conceituais. **[Ver exemplo de PDF A4 exportado e inspecionado](assets/examples/curriculo-exemplo-ficticio.pdf)**.
 
 ## Quickstart — do clone ao primeiro uso
 
@@ -61,7 +71,7 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-Abra a URL local exibida no terminal. No aplicativo, use **Carregar exemplo fictício** → **Analisar aderência** → confira a matriz e edite o currículo reorganizado → **Exportar PDF** → escolha *Salvar como PDF* no navegador.
+Abra a URL local exibida no terminal. No aplicativo, use **Carregar exemplo fictício** → **Analisar aderência** → confira a matriz e edite o currículo reorganizado → **Exportar PDF** → escolha *Salvar como PDF* no navegador. Na demonstração Lovable, **se o selo “Edit with Lovable” estiver visível, feche-o pelo X antes da impressão**, para que não conste no currículo; a revisão do código GitHub já inclui uma regra de impressão que o oculta automaticamente.
 
 Para instalar, testar, compilar, interpretar saídas esperadas ou resolver problemas, consulte o **[guia de reprodução](docs/guia-reproducao.md)**. Ele é a fonte canônica dos comandos de verificação; o Quickstart acima mantém somente o caminho de primeiro uso.
 
@@ -94,7 +104,8 @@ Na revisão GitHub verificada em **23/11/2026**, em ambiente Windows com instala
 | Build | **Concluído** para cliente, SSR e Nitro |
 | Auditoria npm | **0 vulnerabilidades reportadas** nas dependências analisadas naquele momento |
 | Navegador público | Fluxo do exemplo fictício, análise 50%, matriz e edição disponível |
-| Impressão | PDF de exemplo gerado no Chromium; inspeção visual integral de suas páginas não foi documentada |
+| Viewport móvel | **390 × 844 px**, análise concluída e **sem transbordamento horizontal** (emulação Chromium) |
+| Impressão | **PDF A4 de 1 página**, texto extraído e renderização visual inspecionados; saída sintética sem selo após dispensá-lo no navegador |
 
 Esses resultados dizem respeito aos **testes e ambientes especificados**, não constituem garantia universal de portabilidade, acessibilidade, conformidade LGPD ou ausência de qualquer vulnerabilidade. A revisão de dependências do **GitHub** e o snapshot de hospedagem do **Lovable** são cadeias distintas; não se afirma identidade binária entre elas.
 
