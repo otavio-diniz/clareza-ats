@@ -14,7 +14,13 @@ Palavras-chave isoladas não demonstram a experiência de uma pessoa. A interfac
 - Layout responsivo em português, com React, TypeScript, Tailwind, shadcn/ui e testes Vitest.
 
 ## Estado do projeto
-Código originalmente criado no [Lovable](https://lovable.dev/projects/f98d5cdd-e324-4116-984a-1ecbee0f11d6). A geração do agente foi interrompida pelo limite de créditos gratuitos; os arquivos existentes foram exportados a este repositório sem apresentar a interrupção como uma aprovação. O status de **testes, build, segurança e demonstração pública** deve ser sustentado por verificações reais, documentadas em [Decisões e validação](docs/decisoes-e-validacao.md).
+A aplicação foi criada no [Lovable](https://lovable.dev/projects/f98d5cdd-e324-4116-984a-1ecbee0f11d6). A geração inicial do agente foi interrompida pelo limite de créditos gratuitos **depois de criar os arquivos de interface, análise e testes**. O código existente foi importado ao GitHub e recebeu tratamento separado de lint, lockfile e segurança.
+
+**Demonstração publicada:** https://clareza-ats-otavio-diniz.lovable.app — publicação marcada pública pelo Lovable; acesso anônimo à página inicial confirmado com HTTP **200** em 23/11/2026. **Não equivale a teste visual/interativo completo**.
+
+**Validação independente do clone GitHub em 23/11/2026:** 15/15 testes automatizados aprovados (2 arquivos), `npm run lint` sem erros e com 6 avisos Fast Refresh em componentes shadcn/ui, `npm run build` concluído (exit 0), `npm audit --audit-level=high` com zero vulnerabilidades reportadas **no conjunto atualizado de dependências npm**.
+
+**Distinção de versões:** a aplicação hospedada no Lovable usa a revisão do próprio Lovable (anterior aos ajustes locais de dependência e formatação); o repositório contém a revisão corrigida e validada de forma independente. As duas versões não foram reconciliadas como binariamente idênticas. A impressão PDF e o uso mobile ainda dependem de ensaio visual específico. O relato técnico completo consta em [Decisões e validação](docs/decisoes-e-validacao.md).
 
 ## Como executar
 Requisitos: Node.js e npm compatíveis com o projeto.
