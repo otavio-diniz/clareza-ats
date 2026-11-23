@@ -1,19 +1,22 @@
 <!-- LOVABLE:BEGIN -->
 > [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
+> This codebase originated in [Lovable](https://lovable.dev). This GitHub
+> repository was imported independently; **automatic GitHub ↔ Lovable editor
+> synchronization has not been verified**. A GitHub push by itself is **not**
+> evidence of an updated Lovable deployment.
 >
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
+> Preserve public Git history: avoid force push, rebases or amendments of
+> published commits. Work incrementally and validate the actual deployment
+> before claiming synchronization.
 
 ## What Lovable manages
 
-Rules outside this block are the project's own. Change the pieces below in
-Lovable, not by hand. With the [Lovable MCP](https://mcp.lovable.dev)
-connected, `send_message` asks Lovable to do it; otherwise ask the user to
-use the editor.
+Platform-specific resources (database, connectors, gateway and secrets) must
+be managed through legitimate Lovable controls when they are used. Ordinary
+source maintenance in GitHub is separate from the Lovable deployment; changes
+require their own tests and explicit deployment verification. With the
+[Lovable MCP](https://mcp.lovable.dev) connected, `send_message` can request
+agent changes when the workspace has sufficient credits.
 
 - **Database.** Do not add or edit `supabase/migrations/` or `drizzle/`.
   Ask Lovable to change the schema.
