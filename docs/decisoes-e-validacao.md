@@ -50,3 +50,6 @@ A renderização de impressão Chromium via protocolo do navegador produziu PDF 
 
 ## Revisão preliminar de conteúdo público
 O repositório foi montado com dados fictícios; nenhum currículo real, base Radar, contato de candidato ou credencial foi enviado como dado do produto. Foi executada busca textual no código versionado por padrões comuns de token GitHub/OpenAI, chave privada e caminho de usuário local, **sem correspondências**. Esse scanner tem escopo limitado: ausência de correspondência não demonstra ausência absoluta de segredo ou vulnerabilidade. A captura de demonstração deriva de execução real do Chromium e apresenta exclusivamente material sintético.
+
+## Checagem adicional de tipos — 23/11/2026
+A revisão corrigida, clonada do GitHub, também foi verificada com `npx tsc --noEmit`, encerrando com **exit code 0**, sem diagnóstico de erro TypeScript. Essa evidência se refere ao código local/GitHub, não constitui homologação do snapshot hospedado independentemente no Lovable.
