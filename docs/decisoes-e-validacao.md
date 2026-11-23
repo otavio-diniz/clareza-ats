@@ -23,3 +23,21 @@ Executar `npm test`, `npm run lint`, `npm run build`, inspeção de dependência
 
 ## Evidências de teste
 A seção será atualizada com data, versão e saídas efetivas após execução. **Não utilizar relatos genéricos do agente como PASS independente.**
+
+
+## Relatório técnico comprovado — 23/11/2026
+**Origem do código:** projeto Lovable `f98d5cdd-e324-4116-984a-1ecbee0f11d6`. Geração interrompida pelo limite gratuito do agente após criação dos arquivos. Importação da revisão existente para GitHub realizada com commits auditáveis. O repositório privado foi clonado em ambiente Windows com Node.js 26.13.1, npm 11.20.0 e dependências instaladas; posteriormente corrigidas para a revisão pública.
+
+**Validação automatizada:** `npm test` — Vitest 4.1.12, 2 arquivos de testes, **15 aprovados / 0 falhas**, incluindo cenário ficcional 4/8 e preservação de conteúdo do CV. A prova é o processo local concluído com **exit code 0**, não um relato do agente Lovable.
+
+**Lint:** após normalizar a formatação, `npm run lint` finalizou com **0 erros, 6 avisos** `react-refresh/only-export-components` em componentes comuns de UI shadcn. O aviso não foi confundido com erro. `.gitattributes` foi incluído para padronizar LF em diferentes sistemas.
+
+**Build:** `npm run build` — cliente, SSR e worker Nitro para produção compilados com **exit code 0**, Vite atualizado para **8.3.8**. Nenhum deploy externo foi executado pela compilação local.
+
+**Dependências e segurança:** auditoria inicial `npm audit --omit=dev --audit-level=high` mostrou **2 advisories altos** (Vite 8.1.5 e Zod 3.25.76). Inspeção de `src` não revelou importação de Zod, por isso a dependência direta sem uso foi removida; Vite atualizado para 8.3.8. Nova execução de `npm audit --audit-level=high` reportou **found 0 vulnerabilities**. A versão reprodutível usa `package-lock.json` npm; `bun.lock` antigo foi retirado para não transmitir árvore divergente. Essa auditoria não comprova ausência universal de vulnerabilidades, nem substitui testes de penetração.
+
+**Deploy e endereço público:** o Lovable retornou deployment_id `57b331cd-1e8f-443b-9a8a-19b28a63204b` e publicou `https://clareza-ats-otavio-diniz.lovable.app`. A API confirmou `is_published=true`, audiência pública, e uma requisição anônima à raiz retornou **HTTP 200** (HTML com título Clareza ATS). **Não foram realizados testes de uso do formulário em navegador nem exportação PDF efetiva.** O Lovable ainda exibe `needs_attention/out_of_credits` em seu agente, status distinto de hospedagem.
+
+**Diferença entre versões:** a publicação Lovable deriva do commit próprio `dbcbc0337d6c8c00ad133dc3184c79668b48068f`; o código corrigido do GitHub deriva da importação textual e de commits de formatação, lockfile e dependências. O build/npm audit de código GitHub não são prova de que o ambiente Lovable adotou automaticamente essas correções. Não declarar snapshots equivalentes até reconciliação.
+
+**Limitações remanescentes:** validação visual de edição, responsividade, navegação via teclado e impressão PDF; verificação independente das dependências da hospedagem; eventuais alertas do agente e sincronização Lovable ↔ GitHub. Nenhuma candidatura, comunicação externa com recrutadores ou inscrição na plataforma DIO foi executada.
